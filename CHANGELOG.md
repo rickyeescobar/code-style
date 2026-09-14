@@ -4,6 +4,12 @@ All notable changes to this package are recorded here. The format follows [Keep 
 
 ## Unreleased
 
+## 0.1.1 - 2026-09-14
+
+### Changed
+
+- No changes to the package. First release published from CI through npm trusted publishing, with provenance.
+
 ## 0.1.0 - 2026-09-14
 
 ### Added

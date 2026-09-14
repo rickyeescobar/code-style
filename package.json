@@ -1,6 +1,6 @@
 {
   "name": "@r1-dev/code-style",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Opinionated oxlint and oxfmt configuration: a base config, a React add-on, a blank-line rule, and the formatter options.",
   "keywords": [
     "oxlint",
