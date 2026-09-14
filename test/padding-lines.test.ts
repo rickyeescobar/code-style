@@ -38,7 +38,20 @@ tester.run('padding-lines', paddingLines, {
       name: 'a blank line above a comment counts for the statement under it',
       code: lines('a();', '', '// why', 'return;')
     },
-    { name: 'plain calls stay tight', code: lines('a();', 'b();') }
+    { name: 'plain calls stay tight', code: lines('a();', 'b();') },
+    {
+      name: 'a switch case body follows the same rules',
+      code: lines(
+        'switch (x) {',
+        '  case 1:',
+        '    a();',
+        '',
+        '    return;',
+        '  default:',
+        '    b();',
+        '}'
+      )
+    }
   ],
   invalid: [
     {
@@ -89,7 +102,19 @@ tester.run('padding-lines', paddingLines, {
       name: 'an interface after a multi-line type alias',
       code: lines('type A = {', '  a: 1;', '};', 'interface B {', '  b: 2;', '}'),
       output: lines('type A = {', '  a: 1;', '};', '', 'interface B {', '  b: 2;', '}'),
-      errors: ['Expected a blank line before this tsinterface']
+      errors: ['Expected a blank line before this interface']
+    },
+    {
+      name: 'a declaration then a return inside a switch case without braces',
+      code: lines('switch (x) {', '  case 1:', '    const a = 1;', '    return a;', '}'),
+      output: lines('switch (x) {', '  case 1:', '    const a = 1;', '', '    return a;', '}'),
+      errors: ['Expected a blank line before this return']
+    },
+    {
+      name: 'a multi-line export names its kind',
+      code: lines('a();', 'export const b = {', '  c: 1', '};'),
+      output: lines('a();', '', 'export const b = {', '  c: 1', '};'),
+      errors: ['Expected a blank line before this export']
     }
   ]
 });

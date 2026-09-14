@@ -1,0 +1,18 @@
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      oxc:
+        patterns: ['oxlint', 'oxfmt', '@oxlint/*']
+      dev:
+        dependency-type: development
+        exclude-patterns: ['oxlint', 'oxfmt', '@oxlint/*']
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly

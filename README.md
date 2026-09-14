@@ -1,4 +1,4 @@
-# @r1/code-style
+# @r1-dev/code-style
 
 Opinionated [oxlint](https://oxc.rs/docs/guide/usage/linter) and [oxfmt](https://oxc.rs/docs/guide/usage/formatter) configuration for TypeScript projects, in one package:
 
@@ -11,7 +11,7 @@ The goal is code that reads the same in every repository that adopts it: one sta
 ## Install
 
 ```sh
-pnpm add -D @r1/code-style oxlint oxfmt
+pnpm add -D @r1-dev/code-style oxlint oxfmt
 ```
 
 `oxlint` (1.83 or later) and `oxfmt` (0.68 or later) are peer dependencies. The Node-based `oxlint` package and Node 22.18 or later are required, because the configs are TypeScript files.
@@ -22,7 +22,7 @@ Two config files at the repository root. Each one imports the shared rules and a
 
 ```ts
 // oxlint.config.ts
-import { base, react } from '@r1/code-style/oxlint';
+import { base, react } from '@r1-dev/code-style/oxlint';
 import { defineConfig } from 'oxlint';
 
 export default defineConfig({
@@ -33,7 +33,7 @@ export default defineConfig({
 
 ```ts
 // oxfmt.config.ts
-import { format } from '@r1/code-style/oxfmt';
+import { format } from '@r1-dev/code-style/oxfmt';
 import { defineConfig } from 'oxfmt';
 
 export default defineConfig({
@@ -91,7 +91,7 @@ A blank line separates statements, except inside a **run** of statements of the 
 - one-line guards (`if (x) return;`),
 - one-line exports.
 
-A statement that ends with a block, or a declaration, is always followed by a blank line. A `return`, `throw`, loop, `if`, `switch`, `try`, function, class, export, interface, or type alias always gets a blank line before it. Comments travel with the statement under them: a blank line above a comment counts for that statement.
+The same rules apply inside a `switch` case. A statement that ends with a block, or a declaration, is always followed by a blank line. A `return`, `throw`, loop, `if`, `switch`, `try`, function, class, export, interface, or type alias always gets a blank line before it. Comments travel with the statement under them: a blank line above a comment counts for that statement.
 
 ```ts
 const rows = await load();

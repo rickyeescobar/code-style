@@ -2,7 +2,7 @@ import { defineConfig } from 'oxlint';
 
 export const base = defineConfig({
   plugins: ['typescript', 'import', 'oxc', 'eslint', 'unicorn'],
-  jsPlugins: ['@r1/code-style/padding-lines'],
+  jsPlugins: ['@r1-dev/code-style/padding-lines'],
   categories: {
     correctness: 'error',
     suspicious: 'error',

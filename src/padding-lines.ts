@@ -82,8 +82,36 @@ const hasBlankLineBetween = (previous: Statement, next: Statement, context: Cont
   return false;
 };
 
-const getKindOf = (statement: Statement) =>
-  statement.type.replace(/Statement|Declaration$/, '').toLowerCase();
+// Names used in messages; anything not listed reads as a plain statement.
+const KIND_NAMES: Readonly<Partial<Record<Statement['type'], string>>> = {
+  BlockStatement: 'block',
+  BreakStatement: 'break',
+  ClassDeclaration: 'class',
+  ContinueStatement: 'continue',
+  DoWhileStatement: 'loop',
+  ExportAllDeclaration: 'export',
+  ExportDefaultDeclaration: 'export',
+  ExportNamedDeclaration: 'export',
+  ExpressionStatement: 'expression',
+  ForInStatement: 'loop',
+  ForOfStatement: 'loop',
+  ForStatement: 'loop',
+  FunctionDeclaration: 'function',
+  IfStatement: 'if',
+  ImportDeclaration: 'import',
+  ReturnStatement: 'return',
+  SwitchStatement: 'switch',
+  ThrowStatement: 'throw',
+  TryStatement: 'try',
+  TSEnumDeclaration: 'enum',
+  TSInterfaceDeclaration: 'interface',
+  TSModuleDeclaration: 'namespace',
+  TSTypeAliasDeclaration: 'type alias',
+  VariableDeclaration: 'declaration',
+  WhileStatement: 'loop'
+};
+
+const getKindOf = (statement: Statement) => KIND_NAMES[statement.type] ?? 'statement';
 
 const checkBody = (context: Context, statements: ReadonlyArray<Statement>) => {
   for (let index = 1; index < statements.length; index++) {
@@ -112,7 +140,8 @@ export const paddingLines = defineRule({
   createOnce(context) {
     return {
       Program: (node) => checkBody(context, node.body),
-      BlockStatement: (node) => checkBody(context, node.body)
+      BlockStatement: (node) => checkBody(context, node.body),
+      SwitchCase: (node) => checkBody(context, node.consequent)
     };
   }
 });

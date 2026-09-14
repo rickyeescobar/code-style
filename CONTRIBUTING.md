@@ -7,7 +7,7 @@ pnpm install
 pnpm check
 ```
 
-`check` runs the type check, the linter, the format check, the rule tests, and the build. CI runs the same command.
+`check` runs the type check, the linter, the format check, the rule tests, and the build. CI runs the same command on Node 22 and 24.
 
 ## Layout
 
