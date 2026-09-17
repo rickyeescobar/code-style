@@ -13,9 +13,10 @@ pnpm check
 
 | Path                    | Holds                                                         |
 | ----------------------- | ------------------------------------------------------------- |
-| `src/oxlint/index.ts`   | The `base` and `react` oxlint configs.                        |
+| `src/oxlint/index.ts`   | The `base`, `react`, and `effect` oxlint configs.             |
 | `src/oxfmt.ts`          | The formatter options.                                        |
 | `src/padding-lines.ts`  | The `r1/padding-lines` rule and the plugin that exports it.   |
+| `src/anti-slop/`        | The vendored anti-slop plugins; see its README before editing.|
 | `test/`                 | Rule tests, run with oxlint's `RuleTester` on Node's test runner.  |
 
 The repository lints and formats itself with the configs in `src`, through `oxlint.config.ts` and `oxfmt.config.ts` at the root.

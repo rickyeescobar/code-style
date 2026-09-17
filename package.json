@@ -1,9 +1,11 @@
 {
   "name": "@r1-dev/code-style",
-  "version": "0.1.1",
-  "description": "Opinionated oxlint and oxfmt configuration: a base config, a React add-on, a blank-line rule, and the formatter options.",
+  "version": "0.2.0",
+  "description": "Opinionated oxlint and oxfmt configuration: a base config, React and Effect add-ons, the anti-slop rules, a blank-line rule, and the formatter options.",
   "keywords": [
     "oxlint",
+    "anti-slop",
+    "effect",
     "oxfmt",
     "oxc",
     "eslint-plugin",
@@ -38,6 +40,14 @@
     "./padding-lines": {
       "types": "./dist/padding-lines.d.ts",
       "default": "./dist/padding-lines.js"
+    },
+    "./anti-slop": {
+      "types": "./dist/anti-slop/index.d.ts",
+      "default": "./dist/anti-slop/index.js"
+    },
+    "./anti-slop-effect": {
+      "types": "./dist/anti-slop/effect/index.d.ts",
+      "default": "./dist/anti-slop/effect/index.js"
     },
     "./package.json": "./package.json"
   },

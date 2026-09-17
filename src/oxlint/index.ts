@@ -2,7 +2,7 @@ import { defineConfig } from 'oxlint';
 
 export const base = defineConfig({
   plugins: ['typescript', 'import', 'oxc', 'eslint', 'unicorn'],
-  jsPlugins: ['@r1-dev/code-style/padding-lines'],
+  jsPlugins: ['@r1-dev/code-style/padding-lines', '@r1-dev/code-style/anti-slop'],
   categories: {
     correctness: 'error',
     suspicious: 'error',
@@ -10,6 +10,23 @@ export const base = defineConfig({
   },
   rules: {
     'r1/padding-lines': 'error',
+    'anti-slop/no-array-filter-map': 'error',
+    'anti-slop/no-chained-type-assertions': 'error',
+    'anti-slop/no-conditional-empty-object-spread': 'error',
+    'anti-slop/no-known-value-widening': 'error',
+    'anti-slop/no-module-mocking': 'error',
+    'anti-slop/no-object-parameters': 'error',
+    'anti-slop/no-reduce-accumulator-copy': 'error',
+    'anti-slop/no-reflect-apply': 'error',
+    'anti-slop/no-reflect-get': 'error',
+    'anti-slop/no-runtime-typeof': 'error',
+    'anti-slop/no-shape-in-symbol-names': 'error',
+    'anti-slop/no-unknown-parameters': 'error',
+    'anti-slop/no-unknown-returns': 'error',
+    'anti-slop/no-unknown-type-aliases': 'error',
+    'anti-slop/no-unsafe-dictionary-type': 'error',
+    'anti-slop/no-widen-then-assert': 'error',
+    'anti-slop/require-safety-comment-for-type-assertion': 'error',
     complexity: ['error', 10],
     'typescript/consistent-type-imports': ['error', { fixStyle: 'inline-type-imports' }],
     'typescript/no-import-type-side-effects': 'error',
@@ -29,6 +46,7 @@ export const base = defineConfig({
     'unicorn/no-accessor-recursion': 'error',
     'unicorn/prefer-array-flat-map': 'error',
     'oxc/misrefactored-assign-op': 'error',
+    'oxc/no-accumulating-spread': 'error',
     'eslint/no-await-in-loop': 'off',
     'eslint/no-control-regex': 'off',
     'eslint/no-fallthrough': 'off',
@@ -75,5 +93,16 @@ export const react = defineConfig({
     'react/rules-of-hooks': 'error',
     'react/exhaustive-deps': 'error',
     'react/react-in-jsx-scope': 'off'
+  }
+});
+
+export const effect = defineConfig({
+  jsPlugins: ['@r1-dev/code-style/anti-slop-effect'],
+  rules: {
+    'anti-slop-effect/no-manual-effect-error-tag': 'error',
+    'anti-slop-effect/no-manual-tag-comparison': 'error',
+    'anti-slop-effect/no-manual-tagged-construction': 'error',
+    'anti-slop-effect/no-service-constructor-imports': 'error',
+    'anti-slop-effect/prefer-effect-match': 'error'
   }
 });

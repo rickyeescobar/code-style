@@ -2,7 +2,8 @@
 
 Opinionated [oxlint](https://oxc.rs/docs/guide/usage/linter) and [oxfmt](https://oxc.rs/docs/guide/usage/formatter) configuration for TypeScript projects, in one package:
 
-- an oxlint **base config** and a **React add-on**,
+- an oxlint **base config** with a **React add-on** and an **Effect add-on**,
+- the **[anti-slop](https://github.com/dmmulroy/anti-slop)** rules, vendored,
 - a **`padding-lines`** rule that enforces blank-line discipline, with an autofix,
 - the **oxfmt options**.
 
@@ -42,7 +43,15 @@ export default defineConfig({
 });
 ```
 
-Leave out `react` in a project without React. Add scripts:
+Leave out `react` in a project without React. Add `effect` in a project that uses [Effect](https://effect.website):
+
+```ts
+import { base, effect, react } from '@r1-dev/code-style/oxlint';
+
+export default defineConfig({ extends: [base, react, effect] });
+```
+
+Add scripts:
 
 ```json
 {
@@ -82,22 +91,31 @@ The first `lint:fix` and `format` on an existing codebase is a large commit. Aft
 - **`complexity` is capped at 10.** A function past the cap is split into named steps. There is no autofix for this one by design.
 - A long list of stylistic rules is turned **off** where the formatter or the type checker already decides, or where the rule fights idiomatic TypeScript (`no-non-null-assertion`, `no-explicit-any`, `no-namespace`, and others). See [`src/oxlint/index.ts`](src/oxlint/index.ts).
 
+### anti-slop
+
+`base` turns on every generic rule of [anti-slop](https://github.com/dmmulroy/anti-slop) except `require-readable-spacing`, which `r1/padding-lines` covers. The rules reject low-evidence code: `unknown` parameters, returns, and type aliases; `Record<string, unknown>` contracts; `typeof` narrowing; chained or unexplained type assertions; `filter().map()` pairs; a `reduce` that copies its accumulator; object parameters; `Reflect.get` and `Reflect.apply`; module mocking; and shape words in names. `oxc/no-accumulating-spread` is on with them.
+
+`effect` adds the five Effect rules: no hand-written `_tag` fields or comparisons, no hand-built tagged values, no imports of a service constructor outside its layer, and `Match` over a `switch` on a tag.
+
+The plugins ship inside this package under `@r1-dev/code-style/anti-slop` and `@r1-dev/code-style/anti-slop-effect`. [`src/anti-slop/README.md`](src/anti-slop/README.md) records the vendored commit and the local edits.
+
 ### `r1/padding-lines`
 
-A blank line separates statements, except inside a **run** of statements of the same tight kind:
+A blank line separates statements. Inside a function body a **run** of statements of the same tight kind stays together:
 
 - imports,
-- variable declarations,
-- one-line guards (`if (x) return;`),
-- one-line exports.
+- one-line variable declarations,
+- plain calls,
+- overload signatures with their implementation.
 
-The same rules apply inside a `switch` case. A statement that ends with a block, or a declaration, is always followed by a blank line. A `return`, `throw`, loop, `if`, `switch`, `try`, function, class, export, interface, or type alias always gets a blank line before it. Comments travel with the statement under them: a blank line above a comment counts for that statement.
+At the top level of a module every statement stands alone, except imports. A declaration, a statement that ends with a block, a function, class, interface, or type alias is always followed by a blank line. A `return`, `throw`, loop, `if`, `switch`, `try`, function, class, interface, type alias, or multi-line declaration always gets a blank line before it. The same rules apply inside a `switch` case. Comments travel with the statement under them: a blank line above a comment counts for that statement.
 
 ```ts
 const rows = await load();
 const first = rows[0];
 
 if (first === undefined) return null;
+
 if (first.isStale) return refresh(first);
 
 for (const row of rows) {
@@ -107,7 +125,7 @@ for (const row of rows) {
 return first;
 ```
 
-The rule is autofixable. `oxlint --fix` inserts the missing lines and never removes any.
+The rule is a configuration of the ESLint Stylistic `padding-line-between-statements` engine that anti-slop vendors, so it is autofixable: `oxlint --fix` inserts the missing lines and never removes any.
 
 ## Compatibility
 
