@@ -2,7 +2,7 @@
 
 Upstream: https://github.com/dmmulroy/anti-slop at `c44ef22ca116d0ba62a3ff663a0bd13a3f3fa40b` (2026-09-10), MIT (`LICENSE` in this directory).
 
-This is the upstream `src/` directory with the `*.test.ts` files removed. It is published as `@r1-dev/code-style/anti-slop` and `@r1-dev/code-style/anti-slop-effect`; the `base` and `effect` configs in `src/oxlint/index.ts` turn the rules on. The directory is excluded from this repository's own lint and format so an upstream diff stays readable.
+This is the upstream `src/` directory, tests included; `test/anti-slop-upstream.test.ts` runs every `*.test.ts` here on Node's test runner, and the build leaves them out. It is published as `@r1-dev/code-style/anti-slop` and `@r1-dev/code-style/anti-slop-effect`; the `base` and `effect` configs in `src/oxlint/index.ts` turn the rules on. The directory is excluded from this repository's own lint and format so an upstream diff stays readable.
 
 Local edits:
 
