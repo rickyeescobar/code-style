@@ -8,7 +8,7 @@ Code that passed 0.1 can fail 0.2: the anti-slop rules are on in `base`, and `r1
 
 ### Added
 
-- `@r1-dev/code-style/anti-slop` and `@r1-dev/code-style/anti-slop-effect`: the [anti-slop](https://github.com/dmmulroy/anti-slop) plugins, vendored at `c44ef22`. `base` turns on every generic rule except `require-readable-spacing`, plus `oxc/no-accumulating-spread`.
+- `@r1-dev/code-style/anti-slop` and `@r1-dev/code-style/anti-slop-effect`: the [anti-slop](https://github.com/dmmulroy/anti-slop) plugins, vendored at `c44ef22` with their tests. `base` turns on every generic rule except `require-readable-spacing`, plus `oxc/no-accumulating-spread`.
 - `effect`: an opt-in config that turns on the five Effect rules.
 
 ### Changed
