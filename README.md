@@ -143,4 +143,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). Rule proposals are welcome as issues tha
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE). The vendored anti-slop and ESLint Stylistic code is MIT as well; their notices are in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md), which ships with the package.

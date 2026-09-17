@@ -2,6 +2,12 @@
 
 All notable changes to this package are recorded here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the package follows [Semantic Versioning](https://semver.org).
 
+## 0.2.1 - 2026-09-17
+
+### Fixed
+
+- The package ships `THIRD_PARTY_NOTICES.md` with the MIT notices of the vendored anti-slop and ESLint Stylistic code. 0.2.0 redistributed both without them.
+
 ## 0.2.0 - 2026-09-17
 
 Code that passed 0.1 can fail 0.2: the anti-slop rules are on in `base`, and `r1/padding-lines` asks for more blank lines. Run `oxlint --fix` and the formatter once after upgrading.

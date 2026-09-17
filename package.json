@@ -1,6 +1,6 @@
 {
   "name": "@r1-dev/code-style",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Opinionated oxlint and oxfmt configuration: a base config, React and Effect add-ons, the anti-slop rules, a blank-line rule, and the formatter options.",
   "keywords": [
     "oxlint",
@@ -26,7 +26,8 @@
   "sideEffects": false,
   "files": [
     "dist",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "THIRD_PARTY_NOTICES.md"
   ],
   "exports": {
     "./oxlint": {
