@@ -2,6 +2,12 @@
 
 All notable changes to this package are recorded here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the package follows [Semantic Versioning](https://semver.org).
 
+## Unreleased
+
+### Changed
+
+- `anti-slop-effect/no-manual-tag-comparison`: the message for a `_tag` comparison names the tag tests that the compiler checks first: the tagged enum's own `$is('Tag')`, `guards.Tag` of a `Schema.TaggedUnion`, and `Match.tag` or an exhaustive `Match.valueTags`. It keeps `Predicate.isTagged` for unknown or generic input and warns that it accepts any tag name, so a wrong tag compiles and the test is always false. The comparison it replaces is checked by the compiler. The message for a `switch` on `_tag` keeps `$match` and adds `Match.valueTags`, which also rejects an unknown tag.
+
 ## 0.2.1 - 2026-09-17
 
 ### Fixed

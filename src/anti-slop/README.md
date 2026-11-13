@@ -8,6 +8,7 @@ Local edits:
 
 - `shared/dictionary-types.ts`: `unsafeMembers[0] ?? null`, because this package compiles with `noUncheckedIndexedAccess`.
 - `vendor/eslint-stylistic/padding-line-options.d.ts` is renamed to `padding-line-options.ts` so the build emits it next to the engine that imports it.
+- `effect/rules/no-manual-tag-comparison.ts`: `manualComparison` names the tag tests that the compiler checks (the tagged enum's `$is`, `guards.Tag` of a `Schema.TaggedUnion`, `Match.tag`, `Match.valueTags`) before `Predicate.isTagged`, which accepts any tag name. `manualSwitch` adds `Match.valueTags`, which also rejects an unknown tag.
 - `rules/require-readable-spacing.ts` ships but `base` leaves it off: `r1/padding-lines` in `src/padding-lines.ts` configures the same vendored engine with a superset of its pairs.
 
 To update, diff a fresh upstream `src/` against this directory and reapply the edits above.

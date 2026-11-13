@@ -15,9 +15,9 @@ export const noManualTagComparisonRule = defineRule({
 		},
 		messages: {
 			manualComparison:
-				"Use Match.tag/Match.tags for tagged-value branching, or Predicate.isTagged for a simple reusable predicate.",
+				"Use a tag test that the compiler checks: the tagged enum's own `$is('Tag')`, `guards.Tag` of a Schema.TaggedUnion, or Match.tag/Match.tags or an exhaustive Match.valueTags where each variant gets its own branch. Use Predicate.isTagged only for unknown or generic input: it accepts any string, so a wrong tag compiles and the test is always false.",
 			manualSwitch:
-				"Use Match.value(value).pipe(Match.tag/Match.tags/Match.tagsExhaustive) or the tagged enum `$match` helper instead of switching on `_tag`.",
+				"Use the tagged enum `$match` helper, Match.valueTags(value, { ... }), or Match.value(value).pipe(Match.tag/Match.tags/Match.tagsExhaustive) instead of switching on `_tag`. Match.valueTags also rejects an unknown tag; `$match` rejects only a missing one.",
 		},
 	},
 	createOnce(context) {
